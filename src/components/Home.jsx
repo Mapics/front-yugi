@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Logo from '../img/yu.png';
@@ -58,15 +55,12 @@ export default function Home() {
           onChange={e => setSearchTerm(e.target.value)}
         />
 
-        <select
-          value={filterType}
-          onChange={e => setFilterType(e.target.value)}
-        >
-          <option value="">Tous les types</option>
-          <option value="Spell Card">Spell Card</option>
-          <option value="Monster Card">Monster Card</option>
-        
-        </select>
+<select value={filterType} onChange={e => setFilterType(e.target.value)}>
+  <option value="">Tous les types</option>
+  <option value="Monster Card">Monster Cards</option>
+  <option value="Spell Card">Spell Cards</option>
+  <option value="Trap Card">Trap Cards</option>
+</select>
       </div>
       </header>
       <div className="container">
