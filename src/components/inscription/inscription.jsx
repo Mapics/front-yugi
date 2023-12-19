@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const [pseudo, setPseudo] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
-  const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/connexion', {
+      const response = await fetch('http://localhost:3001/utilisateurs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,12 +18,10 @@ const LoginForm = () => {
 
       const data = await response.json();
 
-      if (data.success) {
-        alert(data.message);
-        localStorage.setItem('userId', data.userId);
-        navigate('/');
+      if (response.ok) {
+        alert(data);
       } else {
-        alert(data.message);
+        alert(data.error);
       }
     } catch (error) {
       console.error('Erreur lors de la requête API:', error);
@@ -34,8 +30,8 @@ const LoginForm = () => {
 
   return (
     <div>
-      <h1>Connexion</h1>
-      <form onSubmit={handleLogin}>
+      <h1>Inscription</h1>
+      <form onSubmit={handleSignUp}>
         <label htmlFor="pseudo">Pseudo:</label>
         <input
           type="text"
@@ -50,16 +46,16 @@ const LoginForm = () => {
         <input
           type="password"
           id="motDePasse"
-          name="mot_de_passe"
+          name="motDePasse"
           value={motDePasse}
           onChange={(e) => setMotDePasse(e.target.value)}
           required
         />
         <br />
-        <button type="submit">Se connecter</button>
+        <button type="submit">S'inscrire</button>
       </form>
     </div>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
