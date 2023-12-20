@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './CarteInfo.css'
 
 export default function CarteInfo() {
   const [card, setCard] = useState(null);
