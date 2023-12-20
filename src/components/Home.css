@@ -1,5 +1,5 @@
 .page {
-  background-image: url('../img/hieroglyphs-bg.png'); /* Chemin vers votre image */
+  background-image: url('C:\Users\tcely\OneDrive\Bureau\reactJS\Projet\front-yugioh\src\img\hieroglyphs-bg.png'); /* Chemin vers votre image */
   background-color: #1a1a1a; /* Couleur de fond si l'image ne se charge pas */
   
  
@@ -36,7 +36,7 @@
   
 }
 
-/* Styles pour .input-wrapper, .input-box, et autres restent inchangés */
+
 
 .controls-area {
   display: flex;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './connexion.css';
 
 const LoginForm = () => {
   const [pseudo, setPseudo] = useState('');
@@ -30,33 +31,39 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>Connexion</h1>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="pseudo">Pseudo:</label>
-        <input
-          type="text"
-          id="pseudo"
-          name="pseudo"
-          value={pseudo}
-          onChange={(e) => setPseudo(e.target.value)}
-          required
-        />
-        <br />
-        <label htmlFor="motDePasse">Mot de passe:</label>
-        <input
-          type="password"
-          id="motDePasse"
-          name="mot_de_passe"
-          value={motDePasse}
-          onChange={(e) => setMotDePasse(e.target.value)}
-          required
-        />
-        <br />
-        <button type="submit">Se connecter</button>
-      </form>
+    <div className="login-background">
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleLogin}>
+          <h1>Login</h1>
+          <div className="input-group">
+            <input
+              autoComplete="off"
+              placeholder="Username"
+              type="text"
+              value={pseudo}
+              onChange={(e) => setPseudo(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <input
+              placeholder="Password"
+              type="password"
+              value={motDePasse}
+              onChange={(e) => setMotDePasse(e.target.value)}
+              required
+            />
+          </div>
+          <div className="login-buttons">
+            <button type="submit" className="login-button">Login</button>
+            
+          </div>
+          
+        </form>
+      </div>
     </div>
   );
 };
 
 export default LoginForm;
+
