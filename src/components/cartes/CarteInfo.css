@@ -1,0 +1,8 @@
+.login-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('C:\Users\khale\OneDrive\Bureau\cours Ipssi\ProjetFinal\Projet-CarteX\front-yugioh\src\img\hieroglyphs-bg.png'); /* Mettez à jour le chemin d'accès */
+    background-size: cover;
+  }

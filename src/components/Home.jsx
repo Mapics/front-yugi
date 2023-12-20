@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
-export default function Home() {
+export default function Home({ onCardSelect }) {
   const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('');
@@ -58,12 +58,10 @@ export default function Home() {
     setSortPriceOrder(e.target.value);
   };
 
-  const showCardDetails = (card) => {
-    setSelectedCard(card);
-  };
+  const navigate = useNavigate();
 
-  const closeCardDetails = () => {
-    setSelectedCard(null);
+  const showCardDetails = (cardId) => {
+    navigate(`/cartes/${cardId}`);
   };
 
   const handleDeleteCard = async (cardId) => {
@@ -127,7 +125,7 @@ export default function Home() {
             <option value="Rare">Rare</option>
             <option value="Super Rare">Super Rare</option>
             <option value="Ultra Rare">Ultra Rare</option>
-            {/* Add other rarities as needed */}
+            
           </select>
           <select className="price-order-select" value={sortPriceOrder} onChange={handlePriceOrderChange}>
             <option value="ASC">Price Low-High</option>
@@ -138,7 +136,7 @@ export default function Home() {
       <main className="main-content">
         <div className="cards-grid">
           {cards.map(card => (
-            <div className="card" key={card.id} onClick={() => showCardDetails(card)}>
+             <div className="card" key={card.id} onClick={() => showCardDetails(card.id)}>
               <img src={card.image_url} alt={card.nom} />
               {localStorage.getItem('userId') && (
                 <button className="delete-button" onClick={() => handleDeleteCard(card.id)}>
@@ -153,34 +151,7 @@ export default function Home() {
           <button onClick={handleNextClick}>Next</button>
         </div>
       </main>
-      {selectedCard && (
-        <div className="card-details-overlay">
-          <div className="card-details">
-            <img className="card-image" src={selectedCard.image_url} alt={selectedCard.nom} />
-            <div className="card-info">
-              <h2>{selectedCard.nom}</h2>
-              <p>Type: {selectedCard.type}</p>
-              <p>Race: {selectedCard.race}</p>
-              <p>Set Name: {selectedCard.set_name}</p>
-              <p>Set Rarity: {selectedCard.set_rarity}</p>
-              {selectedCard.type === "Spell Card" || selectedCard.type === "Trap Card" ? (
-                <>
-                  <p>Frame Type: {selectedCard.frameType}</p>
-                  <p>Description: {selectedCard.description}</p>
-                </>
-              ) : (
-                <>
-                  <p>ATK: {selectedCard.atk}</p>
-                  <p>DEF: {selectedCard.def}</p>
-                  <p>Level: {selectedCard.level}</p>
-                  <p>Attribute: {selectedCard.attribute}</p>
-                </>
-              )}
-              <button className="close-button" onClick={closeCardDetails}>Close</button>
-            </div>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }
