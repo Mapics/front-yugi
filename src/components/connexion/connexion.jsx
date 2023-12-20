@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [pseudo, setPseudo] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
-  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/connexion', {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ pseudo, mot_de_passe: motDePasse }),
+        
       });
 
       const data = await response.json();
 
       if (data.success) {
         alert(data.message);
-        localStorage.setItem('userId', data.userId);
-        navigate('/');
       } else {
         alert(data.message);
       }
