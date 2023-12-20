@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -54,7 +53,10 @@ export default function CarteInfo() {
   if (!card) {
     return <div>Chargement...</div>;
   }
-  
+
+  // Vérifiez si l'utilisateur est connecté
+  const isUserLoggedIn = !!localStorage.getItem('userId');
+
   return (
     <div className="card-info-container">
       <h1>{card.nom}</h1>
@@ -76,8 +78,12 @@ export default function CarteInfo() {
           <p>Attribute: {card.attribute}</p>
         </>
       )}
-      <button onClick={handleEditClick}>Modifier la carte</button>
-      <button onClick={handleDeleteClick}>Supprimer la carte</button>
+      {isUserLoggedIn && (
+        <>
+          <button onClick={handleEditClick}>Modifier la carte</button>
+          <button onClick={handleDeleteClick}>Supprimer la carte</button>
+        </>
+      )}
     </div>
   );
 }
