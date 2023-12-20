@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './CarteInfo.css'
+import './CarteInfo.css';
 
 export default function CarteInfo() {
   const [card, setCard] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCardDetails = async () => {
@@ -18,9 +19,33 @@ export default function CarteInfo() {
         console.error("Error fetching card details", error);
       }
     };
-  
+
     fetchCardDetails();
   }, [id]);
+
+  const handleDeleteCard = async () => {
+    try {
+      const userId = localStorage.getItem('userId');
+
+      if (!userId) {
+        console.error('Utilisateur non autorisé');
+        return;
+      }
+
+      console.log('Attempting to delete card with ID:', id);
+
+      const response = await axios.delete(`http://localhost:3001/cartes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userId}`
+        },
+      });
+
+      console.log('Response:', response.data.message);
+      navigate('/');
+    } catch (error) {
+      console.error('Erreur lors de la suppression de la carte', error);
+    }
+  };
 
   if (!card) {
     return <div>Chargement...</div>;
@@ -47,6 +72,9 @@ export default function CarteInfo() {
           <p>Attribute: {card.attribute}</p>
         </>
       )}
+      
+      {/* Bouton de suppression */}
+      <button onClick={handleDeleteCard}>Supprimer la carte</button>
     </div>
   );
 }
