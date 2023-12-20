@@ -4,9 +4,9 @@ import axios from 'axios';
 import './CarteInfo.css';
 
 export default function CarteInfo() {
-  const [card, setCard] = useState(null);
-  const { id } = useParams();
-  const navigate = useNavigate();
+        const [card, setCard] = useState(null);
+        const { id } = useParams();
+        const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCardDetails = async () => {
@@ -47,18 +47,27 @@ export default function CarteInfo() {
     }
   };
 
+  const handleClose = () => {
+    navigate("/");
+  };
+
   if (!card) {
-    return <div>Chargement...</div>;
+    return <div className="loading">Chargement...</div>;
   }
 
   return (
-    <div className="card-info-container">
-      <h1>{card.nom}</h1>
-      <img src={card.image_url} alt={card.nom} />
+    <div className="container">
+       
+      <div className="card-display">
+        
+        <div className="card-image-container">
+          <img src={card.image_url} alt={card.nom} />
+        </div>
+          <div className="card-info">
+       <h1> {card.name}</h1>
       <p>Type: {card.type}</p>
       <p>Race: {card.race}</p>
-      <p>Set Name: {card.set_name}</p>
-      <p>Set Rarity: {card.set_rarity}</p>
+      
       {card.type === "Spell Card" || card.type === "Trap Card" ? (
         <>
           <p>Frame Type: {card.frame_type}</p>
@@ -72,9 +81,12 @@ export default function CarteInfo() {
           <p>Attribute: {card.attribute}</p>
         </>
       )}
-      
-      {/* Bouton de suppression */}
-      <button onClick={handleDeleteCard}>Supprimer la carte</button>
+      </div>
+        <div className="card-actions">
+          <button onClick={handleDeleteCard}>Supprimer la carte</button>
+          <button className="close-button" onClick={handleClose}>Close</button>
+        </div>
+      </div>
     </div>
   );
 }
