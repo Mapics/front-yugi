@@ -23,7 +23,12 @@ export default function CarteInfo() {
     fetchCardDetails();
   }, [id]);
 
-  const handleDeleteCard = async () => {
+  const handleEditClick = () => {
+    // Redirigez l'utilisateur vers la page d'édition
+    navigate(`/carteEdit/${id}`);
+  };
+
+  const handleDeleteClick = async () => {
     try {
       const userId = localStorage.getItem('userId');
 
@@ -32,15 +37,13 @@ export default function CarteInfo() {
         return;
       }
 
-      console.log('Attempting to delete card with ID:', id);
-
-      const response = await axios.delete(`http://localhost:3001/cartes/${id}`, {
+      await axios.delete(`http://localhost:3001/cartes/${id}`, {
         headers: {
           Authorization: `Bearer ${userId}`
         },
       });
 
-      console.log('Response:', response.data.message);
+      // Redirigez l'utilisateur vers la page d'accueil après la suppression
       navigate('/');
     } catch (error) {
       console.error('Erreur lors de la suppression de la carte', error);
@@ -50,6 +53,9 @@ export default function CarteInfo() {
   if (!card) {
     return <div>Chargement...</div>;
   }
+
+  // Vérifiez si l'utilisateur est connecté
+  const isUserLoggedIn = !!localStorage.getItem('userId');
 
   return (
     <div className="card-info-container">
@@ -72,9 +78,12 @@ export default function CarteInfo() {
           <p>Attribute: {card.attribute}</p>
         </>
       )}
-      
-      {/* Bouton de suppression */}
-      <button onClick={handleDeleteCard}>Supprimer la carte</button>
+      {isUserLoggedIn && (
+        <>
+          <button onClick={handleEditClick}>Modifier la carte</button>
+          <button onClick={handleDeleteClick}>Supprimer la carte</button>
+        </>
+      )}
     </div>
   );
 }
