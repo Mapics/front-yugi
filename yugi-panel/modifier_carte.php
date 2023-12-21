@@ -1,6 +1,6 @@
 <?php
-include 'config.php';
-include 'carteDAO.php';
+include 'inc/config.php';
+include 'inc/carteDAO.php';
 
 $carteDAO = new CarteDAO($connexion);
 
