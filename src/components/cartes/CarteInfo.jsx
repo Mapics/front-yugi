@@ -24,26 +24,29 @@ export default function CarteInfo() {
   }, [id]);
 
   const handleEditClick = () => {
-    // Redirigez l'utilisateur vers la page d'édition
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Utilisateur non autorisé');
+      return;
+    }
     navigate(`/carteEdit/${id}`);
   };
+  
 
   const handleDeleteClick = async () => {
     try {
-      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
 
-      if (!userId) {
-        console.error('Utilisateur non autorisé');
+      if (!token) {
+        console.error('Token manquant');
         return;
       }
 
       await axios.delete(`http://localhost:3001/cartes/${id}`, {
         headers: {
-          Authorization: `Bearer ${userId}`
+          Authorization: `Bearer ${token}`
         },
       });
-
-      // Redirigez l'utilisateur vers la page d'accueil après la suppression
       navigate('/');
     } catch (error) {
       console.error('Erreur lors de la suppression de la carte', error);
@@ -55,7 +58,9 @@ export default function CarteInfo() {
   }
 
   // Vérifiez si l'utilisateur est connecté
-  const isUserLoggedIn = !!localStorage.getItem('userId');
+  const isUserLoggedIn = !!localStorage.getItem('token');
+  console.log('Token:', localStorage.getItem('token'));
+
 
   return (
     <div className="card-info-container">
