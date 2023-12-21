@@ -1,8 +1,80 @@
-.login-background {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-image: url('../../img/hieroglyphs-bg.png');
-    background-size: cover;
+body {
+  background-color: #333;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  text-align: left;
+}
+ .info-container{
+  display: flex;
+  align-items: start; 
+  gap: 200px;
+ 
+ }
+
+ .card-info-container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre du navigateur */
+  color: white ;
+}
+
+.card-image img {
+  width: 350px;
+  height: auto;
+}
+.card-image {
+  flex: 1; 
+  max-width: 200px; 
+}
+
+.card-details {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.card-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card-actions button {
+  padding: 5px 10px;
+  font-size: 0.8em; 
+  
+}
+
+@media (max-width: 768px) {
+  .card-info-container {
+    flex-direction: column;
   }
+
+  .card-image img {
+    width: 100%; /* Image pleine largeur sur petits écrans */
+  }
+
+  .card-details {
+    max-width: none;
+  }
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}

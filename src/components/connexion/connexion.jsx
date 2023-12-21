@@ -34,7 +34,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div >
       <h1>Connexion</h1>
       <form onSubmit={handleLogin}>
         <label htmlFor="pseudo">Pseudo:</label>
