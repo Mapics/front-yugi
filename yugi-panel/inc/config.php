@@ -1,16 +1,15 @@
 <?php
-try {
-    $hote = "127.0.0.1";
-    $utilisateur = "yugi_root";
-    $motDePasse = "password";
-    $dataBase = "yugi_db";
-
-    $connexion = new mysqli($hote, $utilisateur, $motDePasse, $dataBase, 3305);
-
-    if ($connexion->connect_error) {
-        die("Erreur de connexion à la base de données: " . $connexion->connect_error);
+    try {
+        $host = "localhost";
+        $user = "root";
+        $password = "toor";
+        $db = "cartex";
+        
+        $connexion = new PDO("mysql:host=$host;dbname=$db", $user, $password);
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        
+        echo "Erreur de connexion à la base de données: " . $e->getMessage();
+        die();
     }
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-}
 ?>
