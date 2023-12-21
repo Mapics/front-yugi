@@ -11,7 +11,7 @@ export default function Home() {
   const [sortPriceOrder, setSortPriceOrder] = useState('ASC');
   const [selectedRarity, setSelectedRarity] = useState('');
   const [alphabeticalSort, setAlphabeticalSort] = useState(false);
-  const cardsPerPage = 20;
+  const cardsPerPage = 27;
 
   const navigate = useNavigate();
 

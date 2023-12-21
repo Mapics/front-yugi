@@ -213,3 +213,14 @@ select {
 select::-ms-expand {
   display: none;
 }
+
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide pour le transform et box-shadow */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Agrandit légèrement la carte */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajoute une ombre pour un effet de profondeur */
+}
