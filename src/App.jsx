@@ -1,14 +1,11 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes,useNavigate } from 'react-router-dom';
 import Home from './components/Home';
 import Connexion from './components/connexion/connexion';
 import CarteInfo from './components/cartes/CarteInfo';
 import CarteEdit from './components/cartes/CarteEdit';
 import Inscription from './components/inscription/inscription';
-<<<<<<< HEAD
-=======
-import { useNavigate } from 'react-router-dom';
->>>>>>> 9a6a2e6a6edbbd77224f4c2129e22db2ca3c2443
+
 
 function App() {
   const navigate = useNavigate();
