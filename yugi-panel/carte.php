@@ -14,6 +14,7 @@ if (isset($_GET['supprimer'])) {
 $cartes = $carteDAO->afficherCartes();
 
 if (!empty($cartes)) {
+    echo "<a href='ajouter_carte.php'><button>Ajouter une carte</button></a>";
     echo "<table border='1'>";
     echo "<tr><th>ID</th><th>Nom</th><th>Type</th><th>Description</th><th>Action</th></tr>";
 
@@ -26,10 +27,8 @@ if (!empty($cartes)) {
         echo "<td><a href='modifier_carte.php?id=" . $carte['id'] . "'>Modifier</a> | <a href='carte.php?supprimer=" . $carte['id'] . "'>Supprimer</a></td>";
         echo "</tr>";
     }
-
     echo "</table>";
     // Ajouter le bouton "Ajouter une carte"
-    echo "<a href='ajouter_carte.php'><button>Ajouter une carte</button></a>";
 } else {
     echo "Aucune carte trouvée dans la base de données.";
 }
