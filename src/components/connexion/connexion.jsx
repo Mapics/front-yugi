@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './connexion.css'
+import './connexion.css';
+
 const LoginForm = () => {
   const [pseudo, setPseudo] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
@@ -22,7 +23,7 @@ const LoginForm = () => {
 
       if (data.success) {
         alert(data.message);
-        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('token', data.token);
         navigate('/');
       } else {
         alert(data.message);
