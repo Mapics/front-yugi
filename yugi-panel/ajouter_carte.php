@@ -1,6 +1,11 @@
 <?php
+<<<<<<< HEAD
 include 'inc/config.php';
 include 'inc/carteDAO.php';
+=======
+include './inc/config.php';
+include './inc/carteDAO.php';
+>>>>>>> 9a6a2e6a6edbbd77224f4c2129e22db2ca3c2443
 
 $carteDAO = new CarteDAO($connexion);
 
