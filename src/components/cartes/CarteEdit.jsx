@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -48,9 +47,9 @@ export default function CarteEdit() {
 
   const handleSaveChanges = async () => {
     try {
-      const userId = localStorage.getItem('userId');
+      const token = localStorage.getItem('token');
 
-      if (!userId) {
+      if (!token) {
         console.error('Utilisateur non autorisé');
         return;
       }
@@ -59,7 +58,7 @@ export default function CarteEdit() {
 
       const response = await axios.put(`http://localhost:3001/cartes/${id}`, editedCard, {
         headers: {
-          Authorization: `Bearer ${userId}`
+          Authorization: `Bearer ${token}`
         },
       });
 
