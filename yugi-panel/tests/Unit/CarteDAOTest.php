@@ -12,21 +12,29 @@ class CarteDAOTest extends TestCase {
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $this->pdo->exec("CREATE TABLE Cartes (
-                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                nom VARCHAR(255) NOT NULL,
-                type VARCHAR(255) NOT NULL,
-                frameType VARCHAR(255) NOT NULL,
-                description TEXT NOT NULL,
-                race VARCHAR(255),
-                set_name VARCHAR(255),
-                set_rarity VARCHAR(255),
-                cardmarket_price VARCHAR(255),
-                image_url VARCHAR(255),
-                atk VARCHAR(255),
-                def VARCHAR(255),
-                level VARCHAR(255),
-                attribute VARCHAR(255)
-            )");
+            `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+            `nom` varchar(255) DEFAULT NULL,
+            `type` varchar(255) DEFAULT NULL,
+            `frameType` varchar(255) DEFAULT NULL,
+            `description` text DEFAULT NULL,
+            `race` varchar(255) DEFAULT NULL,
+            `archetype` varchar(255) DEFAULT NULL,
+            `ygoprodeck_url` varchar(255) DEFAULT NULL,
+            `set_name` varchar(255) DEFAULT NULL,
+            `set_code` varchar(255) DEFAULT NULL,
+            `set_rarity` varchar(255) DEFAULT NULL,
+            `set_price` varchar(255) DEFAULT NULL,
+            `cardmarket_price` varchar(255) DEFAULT NULL,
+            `tcgplayer_price` varchar(255) DEFAULT NULL,
+            `ebay_price` varchar(255) DEFAULT NULL,
+            `amazon_price` varchar(255) DEFAULT NULL,
+            `coolstuffinc_price` varchar(255) DEFAULT NULL,
+            `image_url` varchar(255) DEFAULT NULL,
+            `atk` int(11) DEFAULT NULL,
+            `def` int(11) DEFAULT NULL,
+            `level` int(11) DEFAULT NULL,
+            `attribute` varchar(255) DEFAULT NULL
+        )");        
         $this->carteDAO = new CarteDAO($this->pdo);
     }
 
@@ -57,7 +65,6 @@ class CarteDAOTest extends TestCase {
         $nom = 'Blue-Eyes White Dragon';
         $this->carteDAO->ajouterCarte($nom);
         
-        // Assuming the id of the first insert is 1
         $carte = $this->carteDAO->getCarteById(1);
 
         $this->assertEquals($nom, $carte['nom']);
@@ -68,7 +75,6 @@ class CarteDAOTest extends TestCase {
         $newNom = 'Dark Magician Girl';
         $this->carteDAO->ajouterCarte($nom);
 
-        // Assuming the id of the first insert is 1
         $this->carteDAO->modifierCarte(1, $newNom, 'Spellcaster', 'Dark', 'This is a description.','.','.', 'Super Rare', '5.00', 'http://test.com', '2000', '1700', '6', 'Dark');
 
         $carte = $this->carteDAO->getCarteById(1);
