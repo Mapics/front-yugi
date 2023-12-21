@@ -1,5 +1,5 @@
 body {
-  background-color: #333;
+  background-image: url('../../img/hieroglyphs-bg.png'); /* Chemin vers votre image */
   margin: 0;
   font-family: sans-serif;
 }
@@ -23,6 +23,8 @@ body {
   align-items: center; /* Centre verticalement */
   height: 100vh; /* Prend toute la hauteur de la fenêtre du navigateur */
   color: white ;
+  
+
 }
 
 .card-image img {

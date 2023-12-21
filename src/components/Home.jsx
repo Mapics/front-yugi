@@ -87,7 +87,7 @@ export default function Home() {
             <option value="Spell Card">Spell Cards</option>
             <option value="Trap Card">Trap Cards</option>
           </select>
-          <button onClick={toggleAlphabeticalSort}>
+          <button className='btn' onClick={toggleAlphabeticalSort}>
             Sort A-Z {alphabeticalSort ? 'On' : 'Off'}
           </button>
           <select className="rarity-select" value={selectedRarity} onChange={handleRarityChange}>

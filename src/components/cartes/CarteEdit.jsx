@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './CarteEdit.css';
 
 export default function CarteEdit() {
   const [card, setCard] = useState(null);
@@ -75,6 +76,10 @@ export default function CarteEdit() {
 
   return (
     <div className="card-edit-container">
+       <div className="image-container">
+      <img src={editedCard.image_url} alt={`Image de ${editedCard.nom}`} />
+    </div>
+      <div className="form-container">
       <h1>Édition de la carte</h1>
       <label>Nom:
         <input type="text" name="nom" value={editedCard.nom} onChange={handleInputChange} />
@@ -116,7 +121,9 @@ export default function CarteEdit() {
           </label>
         </>
       )}
-      <button onClick={handleSaveChanges}>Enregistrer les modifications</button>
+      <button className='btn' onClick={handleSaveChanges}>Enregistrer les modifications</button>
+    </div>
+   
     </div>
   );
 }

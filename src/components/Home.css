@@ -1,8 +1,6 @@
 .page {
   background-image: url('../../src/img/hieroglyphs-bg.png'); /* Chemin vers votre image */
   background-color: #1a1a1a; /* Couleur de fond si l'image ne se charge pas */
-  
- 
   color: white;
   min-height: 100vh;
   display: flex;
@@ -169,8 +167,23 @@ button {
   text-transform: uppercase;
   font-weight: bold;
 }
+.btn {
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
 button:hover {
+  background-color: #2f3030;
+}
+
+.btn:hover {
   background-color: #2f3030;
 }
 

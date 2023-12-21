@@ -102,6 +102,7 @@ export default function CarteInfo() {
         </div>
       </div>
       </div>
+      
     </div>
   )
 }
