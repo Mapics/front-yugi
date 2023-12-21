@@ -130,7 +130,7 @@
   padding: 10px 0;
   border: none;
   border-bottom: 2px solid #ccc; /* Couleur de la bordure par défaut */
-  color: #08AEEA; /* Couleur du texte dans l'input */
+  color: #ffffff; /* Couleur du texte dans l'input */
   width: 100%;
   background-color: transparent;
   transition: border-color 0.3s ease-in-out; /* Transition pour l'effet de focus */
