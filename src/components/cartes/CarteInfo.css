@@ -1,52 +1,80 @@
+body {
+  background-color: #333;
+  margin: 0;
+  font-family: sans-serif;
+}
+
 .header {
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    text-align: left; /* Alignement du titre à gauche */
-  }
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  text-align: left;
+}
+ .info-container{
+  display: flex;
+  align-items: start; 
+  gap: 200px;
+ 
+ }
+
+ .card-info-container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre du navigateur */
+  color: white ;
+}
+
+.card-image img {
+  width: 350px;
+  height: auto;
+}
+.card-image {
+  flex: 1; 
+  max-width: 200px; 
+}
+
+.card-details {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.card-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card-actions button {
+  padding: 5px 10px;
+  font-size: 0.8em; 
   
-  .container {
-    display: flex;
+}
+
+@media (max-width: 768px) {
+  .card-info-container {
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background-image: url('../../img/hieroglyphs-bg.png');
-    background-size: cover;
   }
-  
-  .card-display {
-    background-color: black;
-    color: white;
-    border-radius: 15px;
-    padding: 20px;
-    width: 80%; /* Ajustez la largeur selon vos besoins */
-    max-width: 1000px; /* Ajustez la largeur maximale selon vos besoins */
+
+  .card-image img {
+    width: 100%; /* Image pleine largeur sur petits écrans */
   }
-  
-  .card-image-container {
-    width: 40%;
-    display: inline-block; /* Pour aligner l'image à gauche */
+
+  .card-details {
+    max-width: none;
   }
-  
-  .card-info {
-    width: 50%;
-    display: inline-block; /* Pour aligner les informations à droite */
-    text-align: left;
-    margin-left: 50px;
-    vertical-align: top; /* Aligner le haut du contenu avec l'image */
-  }
-  
-  .card-actions {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  /* Style supplémentaire pour assurer une bonne disposition */
-  .card-details-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Aligner les éléments en haut */
-  }
-  
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}

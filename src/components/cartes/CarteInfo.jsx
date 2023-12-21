@@ -58,41 +58,45 @@ export default function CarteInfo() {
     return <div className="loading">Chargement...</div>;
   }
 
-  // Vérifiez si l'utilisateur est connecté
+  
   const isUserLoggedIn = !!localStorage.getItem('userId');
 
   return (
-    <div className="container">
-       
-      <div className="card-display">
-        
-        <div className="card-image-container">
-          <img src={card.image_url} alt={card.nom} />
+    <div className="card-info-container">
+      <div className="info-container">
+      <div className="card-image">
+        <img src={card.image_url} alt={card.nom} />
+      </div>
+      <div className="card-details">
+        <h1>{card.nom}</h1>
+        <p>Type: {card.type}</p>
+        <p>Race: {card.race}</p>
+        <p>Set Name: {card.set_name}</p>
+        <p>Set Rarity: {card.set_rarity}</p>
+        {card.type === "Spell Card" || card.type === "Trap Card" ? (
+          <>
+            <p>Frame Type: {card.frame_type}</p>
+            <p>Description: {card.description}</p>
+          </>
+        ) : (
+          <>
+            <p>ATK: {card.atk}</p>
+            <p>DEF: {card.def}</p>
+            <p>Level: {card.level}</p>
+            <p>Attribute: {card.attribute}</p>
+          </>
+        )}
+        <div className="card-actions">
+          <button onClick={handleClose}>Fermer</button>
+          {isUserLoggedIn && (
+            <>
+              <button onClick={handleEditClick}>Modifier la carte</button>
+              <button onClick={handleDeleteClick}>Supprimer la carte</button>
+            </>
+          )}
         </div>
-          <div className="card-info">
-       <h1> {card.name}</h1>
-      <p>Type: {card.type}</p>
-      <p>Race: {card.race}</p>
-      
-      {card.type === "Spell Card" || card.type === "Trap Card" ? (
-        <>
-          <p>Frame Type: {card.frame_type}</p>
-          <p>Description: {card.description}</p>
-        </>
-      ) : (
-        <>
-          <p>ATK: {card.atk}</p>
-          <p>DEF: {card.def}</p>
-          <p>Level: {card.level}</p>
-          <p>Attribute: {card.attribute}</p>
-        </>
-      )}
-      {isUserLoggedIn && (
-        <>
-          <button onClick={handleEditClick}>Modifier la carte</button>
-          <button onClick={handleDeleteClick}>Supprimer la carte</button>
-        </>
-      )}
+      </div>
+      </div>
     </div>
-  );
+  )
 }

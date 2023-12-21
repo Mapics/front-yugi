@@ -8,6 +8,11 @@ import CarteEdit from './components/cartes/CarteEdit';
 function App() {
   return (
       <div className="App">
+        <header className="header">
+        <div className="header-top">
+          <h1>Yu-Gi-Oh</h1>
+          </div>
+          </header>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/connexion" element={<Connexion />} />
