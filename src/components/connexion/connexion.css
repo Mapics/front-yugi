@@ -4,7 +4,7 @@
     align-items: center;
     min-height: 100vh;
     background-image: url('../../img/hieroglyphs-bg.png');
-    background-size: cover;
+    /* background-size: cover; */
   }
   
   .login-container {
@@ -69,5 +69,4 @@
     cursor: pointer;
   }
   
-  /* Ajoutez des styles supplémentaires pour les effets de focus si nécessaire */
   

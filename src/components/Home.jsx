@@ -66,9 +66,7 @@ export default function Home() {
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="header-top">
-          <h1>Yu-Gi-Oh</h1>
+      
           <div className="search-area">
             <div className="input-wrapper">
               <input
@@ -81,7 +79,7 @@ export default function Home() {
               <span className="underline"></span>
             </div>
           </div>
-        </div>
+        
         <div className="controls-area">
           <select className="filter-select" value={filterType} onChange={e => setFilterType(e.target.value)}>
             <option value="">All Types</option>
@@ -89,7 +87,7 @@ export default function Home() {
             <option value="Spell Card">Spell Cards</option>
             <option value="Trap Card">Trap Cards</option>
           </select>
-          <button onClick={toggleAlphabeticalSort}>
+          <button className='btn' onClick={toggleAlphabeticalSort}>
             Sort A-Z {alphabeticalSort ? 'On' : 'Off'}
           </button>
           <select className="rarity-select" value={selectedRarity} onChange={handleRarityChange}>
@@ -105,7 +103,7 @@ export default function Home() {
             <option value="DESC">Price High-Low</option>
           </select>
         </div>
-      </header>
+      
       <main className="main-content">
         <div className="cards-grid">
           {cards.map(card => (
