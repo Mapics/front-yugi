@@ -1,16 +1,14 @@
 <?php
 include 'inc/config.php';
-include 'inc/classes/carteDAO.php';
+include 'inc/carteDAO.php';
 
 $carteDAO = new CarteDAO($connexion);
 
-// Opération de suppression (Delete)
 if (isset($_GET['supprimer'])) {
     $id_supprimer = $_GET['supprimer'];
     $carteDAO->supprimerCarte($id_supprimer);
 }
 
-// Opération de lecture (Read)
 $cartes = $carteDAO->afficherCartes();
 
 if (!empty($cartes)) {
@@ -28,7 +26,6 @@ if (!empty($cartes)) {
         echo "</tr>";
     }
     echo "</table>";
-    // Ajouter le bouton "Ajouter une carte"
 } else {
     echo "Aucune carte trouvée dans la base de données.";
 }

@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Connexion from './components/connexion/connexion';
 import CarteInfo from './components/cartes/CarteInfo';
 import CarteEdit from './components/cartes/CarteEdit';
+import Inscription from './components/inscription/inscription';
 
 function App() {
   return (

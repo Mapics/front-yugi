@@ -57,7 +57,6 @@ class CarteDAOTest extends TestCase {
         $nom = 'Blue-Eyes White Dragon';
         $this->carteDAO->ajouterCarte($nom);
         
-        // Assuming the id of the first insert is 1
         $carte = $this->carteDAO->getCarteById(1);
 
         $this->assertEquals($nom, $carte['nom']);
@@ -68,7 +67,6 @@ class CarteDAOTest extends TestCase {
         $newNom = 'Dark Magician Girl';
         $this->carteDAO->ajouterCarte($nom);
 
-        // Assuming the id of the first insert is 1
         $this->carteDAO->modifierCarte(1, $newNom, 'Spellcaster', 'Dark', 'This is a description.','.','.', 'Super Rare', '5.00', 'http://test.com', '2000', '1700', '6', 'Dark');
 
         $carte = $this->carteDAO->getCarteById(1);
