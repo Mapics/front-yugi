@@ -64,34 +64,6 @@ export default function Home() {
     navigate(`/carteInfo/${cardId}`);
   };
 
-  const handleDeleteCard = async (cardId) => {
-    try {
-      const userId = localStorage.getItem('userId');
-      console.log('UserID:', userId);
-
-      if (!userId) {
-        console.error('Utilisateur non autorisé');
-        return;
-      }
-
-      console.log('Attempting to delete card with ID:', cardId);
-
-      const response = await axios.delete(`http://localhost:3001/cartes/${cardId}`, {
-        headers: {
-          Authorization: `Bearer ${userId}`
-        },
-      });
-
-      console.log('Response:', response.data.message);
-
-      const updatedCards = cards.filter(card => card.id !== cardId);
-      setCards(updatedCards);
-    } catch (error) {
-      console.error('Erreur lors de la suppression de la carte', error);
-    }
-  };
-
-
   return (
     <div className="page">
       <header className="header">
@@ -139,11 +111,6 @@ export default function Home() {
           {cards.map(card => (
              <div className="card" key={card.id} onClick={() => showCardDetails(card.id)}>
               <img src={card.image_url} alt={card.nom} />
-              {localStorage.getItem('userId') && (
-                <button className="delete-button" onClick={() => handleDeleteCard(card.id)}>
-                  Supprimer
-                </button>
-              )}
             </div>
           ))}
         </div>
