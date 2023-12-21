@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './CarteEdit.css';
 
 export default function CarteEdit() {
   const [card, setCard] = useState(null);
@@ -38,6 +37,19 @@ export default function CarteEdit() {
     fetchCardDetails();
   }, [id]);
 
+  useEffect(() => {
+    const checkAuthentication = () => {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        console.error('Utilisateur non autorisé');
+        navigate('/');
+      }
+    };
+
+    checkAuthentication();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditedCard({
@@ -52,6 +64,7 @@ export default function CarteEdit() {
 
       if (!token) {
         console.error('Utilisateur non autorisé');
+        navigate('/connexion');
         return;
       }
 
