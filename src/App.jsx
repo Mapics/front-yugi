@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Connexion from './components/connexion/connexion';
 import CarteInfo from './components/cartes/CarteInfo';
 import CarteEdit from './components/cartes/CarteEdit';
-// import Inscription from './components/inscription/inscription';
+import Inscription from './components/inscription/inscription';
 
 function App() {
   // Navigation hook for programmatic navigation
@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/connexion" element={<Connexion />} />
-        {/* <Route path="/inscription" element={<Inscription />} /> */}
+        <Route path="/inscription" element={<Inscription />} />
         <Route path="/carteInfo/:id" element={<CarteInfo />} />
         <Route path="/carteEdit/:id" element={<CarteEdit />} />
       </Routes>
