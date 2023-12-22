@@ -1,18 +1,24 @@
 import React from 'react';
-import { Route, Routes,useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Connexion from './components/connexion/connexion';
 import CarteInfo from './components/cartes/CarteInfo';
 import CarteEdit from './components/cartes/CarteEdit';
+import logo from './img/yugi.png';
+import './App.css';
 import Inscription from './components/inscription/inscription';
 import { useNavigate } from 'react-router-dom';
 
 function App() {
+  // Navigation hook for programmatic navigation
   const navigate = useNavigate();
 
+  // Handler for user logout
   const handleLogout = () => {
+    // Removing user-related items from local storage
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    // Navigating to the home page after logout
     navigate('/');
   };
 
@@ -20,7 +26,9 @@ function App() {
     <div className="App">
       <header className="header">
         <div className="header-top">
-          <h1>Yu-Gi-Oh</h1>
+          <Link to="/">
+            <img src={logo} alt="Logo" /> 
+          </Link>
           {localStorage.getItem('token') && (
             <button onClick={handleLogout}>Déconnexion</button>
           )}

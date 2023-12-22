@@ -130,7 +130,7 @@
   padding: 10px 0;
   border: none;
   border-bottom: 2px solid #ccc; /* Couleur de la bordure par défaut */
-  color: #08AEEA; /* Couleur du texte dans l'input */
+  color: #ffffff; /* Couleur du texte dans l'input */
   width: 100%;
   background-color: transparent;
   transition: border-color 0.3s ease-in-out; /* Transition pour l'effet de focus */
@@ -212,4 +212,15 @@ select {
 /* Style pour désactiver l'apparence par défaut dans IE */
 select::-ms-expand {
   display: none;
+}
+
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide pour le transform et box-shadow */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Agrandit légèrement la carte */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ajoute une ombre pour un effet de profondeur */
 }

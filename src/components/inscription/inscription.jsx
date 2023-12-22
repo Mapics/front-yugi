@@ -1,35 +1,52 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+// SignUpForm component
 const SignUpForm = () => {
+  // State variables for managing form inputs
   const [pseudo, setPseudo] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
 
+  // Hook for programmatic navigation
+  const navigate = useNavigate();
+
+  // Event handler for form submission
   const handleSignUp = async (event) => {
     event.preventDefault();
 
     try {
+      // Making a POST request to the server's API for user registration
       const response = await fetch('http://localhost:3001/utilisateurs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Sending user registration data in the request body
         body: JSON.stringify({ pseudo, mot_de_passe: motDePasse }),
       });
 
+      // Parsing the response data
       const data = await response.json();
 
+      // Handling the response data
       if (response.ok) {
+        // Displaying a success message if registration is successful
         alert(data);
+
+        // Redirecting to the home page after successful registration
+        navigate('/');
       } else {
+        // Displaying an error message if registration fails
         alert(data.error);
       }
     } catch (error) {
+      // Handling errors related to the API request
       console.error('Erreur lors de la requête API:', error);
     }
   };
 
   return (
-    <div>
+    <div className='div'>
       <h1>Inscription</h1>
       <form onSubmit={handleSignUp}>
         <label htmlFor="pseudo">Pseudo:</label>

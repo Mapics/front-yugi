@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 export default function Home() {
+  // State variables to manage the component's state
   const [cards, setCards] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,12 +12,15 @@ export default function Home() {
   const [sortPriceOrder, setSortPriceOrder] = useState('ASC');
   const [selectedRarity, setSelectedRarity] = useState('');
   const [alphabeticalSort, setAlphabeticalSort] = useState(false);
-  const cardsPerPage = 20;
+  const cardsPerPage = 27;
 
+  // Navigation hook for programmatic navigation
   const navigate = useNavigate();
 
+  // Fetch cards from the server based on the current filters and page
   useEffect(() => {
     const fetchCards = async () => {
+      // Constructing query parameters for the API request
       const params = new URLSearchParams({
         page: currentPage,
         limit: cardsPerPage,
@@ -25,11 +29,14 @@ export default function Home() {
         rarity: selectedRarity,
         sortPrice: sortPriceOrder
       });
+      
+      // Adding an additional parameter for alphabetical sorting if enabled
       if (alphabeticalSort) {
         params.append('sortAlphabetical', 'ASC');
       }
 
       try {
+        // Making a GET request to the server's API
         const res = await axios.get(`http://localhost:3001/cartes?${params.toString()}`);
         setCards(res.data);
       } catch (error) {
@@ -37,33 +44,39 @@ export default function Home() {
       }
     };
 
+    // Calling the fetchCards function when the dependencies change
     fetchCards();
   }, [currentPage, searchTerm, filterType, selectedRarity, sortPriceOrder, alphabeticalSort]);
 
+  // Handler for clicking the "Previous" button
   const handlePreviousClick = () => {
     setCurrentPage(Math.max(1, currentPage - 1));
   };
 
+  // Handler for clicking the "Next" button
   const handleNextClick = () => {
     setCurrentPage(currentPage + 1);
   };
 
+  // Handler for toggling alphabetical sorting
   const toggleAlphabeticalSort = () => {
     setAlphabeticalSort(!alphabeticalSort);
   };
 
+  // Handler for changing the selected rarity filter
   const handleRarityChange = (e) => {
     setSelectedRarity(e.target.value);
   };
 
+  // Handler for changing the selected price order
   const handlePriceOrderChange = (e) => {
     setSortPriceOrder(e.target.value);
   };
 
+  // Navigate to the detailed view of a card
   const showCardDetails = (cardId) => {
     navigate(`/carteInfo/${cardId}`);
   };
-
   return (
     <div className="page">
       
