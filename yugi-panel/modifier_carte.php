@@ -1,12 +1,16 @@
 <?php
+// Include configuration and data access files
 include './inc/config.php';
 include './inc/carteDAO.php';
 
+// Create a new instance of CarteDAO with the database connection
 $carteDAO = new CarteDAO($connexion);
 
+// Check if the form is submitted (POST request)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Vérifie si l'ID est spécifié
+    // Check if 'id' is set in the POST data
     if (isset($_POST['id'])) {
+        // Retrieve data from the form
         $id = $_POST['id'];
         $nom = $_POST['nom'];
         $type = $_POST['type'];
@@ -22,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $level = isset($_POST['level']) ? intval($_POST['level']) : 0;
         $attribute = isset($_POST['attribute']) ? $_POST['attribute'] : '';
 
-        // Appelle la fonction de la classe CarteDAO pour effectuer la modification
+        // Call the modifierCarte method to update the card data
         $carteDAO->modifierCarte(
             $id,
             $nom,
@@ -40,21 +44,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $attribute
         );
     } else {
-        echo "ID de la carte non spécifié.";
+        // Display an error message if 'id' is not specified
+        echo "Card ID not specified.";
         exit;
     }
 }
 
+// Check if 'id' parameter is present in the URL
 if (isset($_GET['id'])) {
+    // Retrieve the card details by ID
     $id = $_GET['id'];
     $carte = $carteDAO->getCarteById($id);
 
+    // Display an error message if the card is not found
     if (!$carte) {
-        echo "Carte non trouvée dans la base de données.";
+        echo "Card not found in the database.";
         exit;
     }
 } else {
-    echo "ID de la carte non spécifié.";
+    // Display an error message if 'id' is not specified in the URL
+    echo "Card ID not specified.";
     exit;
 }
 ?>
@@ -66,9 +75,11 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Carte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+<div class="container">
     <h2>Modifier Carte</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <input type="hidden" name="id" value="<?php echo $carte['id']; ?>">
@@ -100,6 +111,7 @@ if (isset($_GET['id'])) {
         <input type="text" name="attribute" value="<?php echo $carte['attribute']; ?>"><br>
         <input type="submit" value="Modifier">
     </form>
+</div>
 </body>
 
 </html>
