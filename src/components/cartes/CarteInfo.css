@@ -1,5 +1,5 @@
 body {
-  background-image: url('../../img/hieroglyphs-bg.png'); /* Chemin vers votre image */
+  background-image: url('../../img/hieroglyphs-bg.png');
   margin: 0;
   font-family: sans-serif;
 }
@@ -10,62 +10,67 @@ body {
   padding: 10px 20px;
   text-align: left;
 }
- .info-container{
-  display: flex;
-  align-items: start; 
-  gap: 200px;
- 
- }
 
- .card-info-container {
+.info-container {
   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre du navigateur */
-  color: white ;
-  
+  align-items: flex-start;
+  gap: 1rem;
+}
 
+.card-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px; 
+  min-height: 100vh;
+  color: white;
 }
 
 .card-image img {
-  width: 350px;
+  width: 350px; 
   height: auto;
 }
+
 .card-image {
-  flex: 1; 
-  max-width: 200px; 
+  flex-shrink: 0; 
+  margin-right: 2rem;
 }
 
 .card-details {
-  flex: 3;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 400px;
-}
+  max-width: 600px; 
+  min-width: 500px;
+  overflow-y: auto;
+    margin-left: 100px;
+   }
 
 .card-actions {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 1rem; 
 }
+
 .card-actions button {
-  padding: 5px 10px;
-  font-size: 0.8em; 
-  
+  padding: 10px 20px;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
-  .card-info-container {
+  .info-container {
     flex-direction: column;
-  }
-
-  .card-image img {
-    width: 100%; /* Image pleine largeur sur petits écrans */
+    align-items: center;
   }
 
   .card-details {
-    max-width: none;
+    width: 90%; 
+    margin-top: 1rem; 
+  }
+
+  .card-image img {
+    width: 90%;
   }
 }
 
