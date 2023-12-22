@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // SignUpForm component
 const SignUpForm = () => {
   // State variables for managing form inputs
   const [pseudo, setPseudo] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
+
+  // Hook for programmatic navigation
+  const navigate = useNavigate();
 
   // Event handler for form submission
   const handleSignUp = async (event) => {
@@ -28,6 +32,9 @@ const SignUpForm = () => {
       if (response.ok) {
         // Displaying a success message if registration is successful
         alert(data);
+
+        // Redirecting to the home page after successful registration
+        navigate('/');
       } else {
         // Displaying an error message if registration fails
         alert(data.error);
@@ -39,7 +46,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
+    <div className='div'>
       <h1>Inscription</h1>
       <form onSubmit={handleSignUp}>
         <label htmlFor="pseudo">Pseudo:</label>
