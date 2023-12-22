@@ -1,9 +1,11 @@
 import React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Connexion from './components/connexion/connexion';
 import CarteInfo from './components/cartes/CarteInfo';
 import CarteEdit from './components/cartes/CarteEdit';
+import logo from './img/yugi.png';
+import './App.css';
 // import Inscription from './components/inscription/inscription';
 
 function App() {
@@ -23,7 +25,10 @@ function App() {
     <div className="App">
       <header className="header">
         <div className="header-top">
-          <h1>Yu-Gi-Oh</h1>
+          {/* importer une image */}
+          <Link to="/">
+            <img src={logo} alt="Logo" /> 
+          </Link>
           {localStorage.getItem('token') && (
             <button onClick={handleLogout}>Déconnexion</button>
           )}
