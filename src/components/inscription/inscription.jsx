@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './inscription.css';
 
 // SignUpForm component
 const SignUpForm = () => {
@@ -39,7 +40,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
+    <div className='div'>
       <h1>Inscription</h1>
       <form onSubmit={handleSignUp}>
         <label htmlFor="pseudo">Pseudo:</label>
